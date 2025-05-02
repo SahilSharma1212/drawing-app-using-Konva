@@ -1,0 +1,10 @@
+@import "tailwindcss";
+
+body{
+    background-color: #050505;
+    background: linear-gradient(120deg, #00000c, #050505);
+    width: 100vw;
+    max-width: 100vw;
+    overflow-x: hidden;
+    color: white;
+}
