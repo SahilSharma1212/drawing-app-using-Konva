@@ -230,9 +230,9 @@ export default function App() {
                 </div>
                 <div className="w-0.5 h-40 bg-gradient-to-r from-white/0 via-white/35 to-white/0 rounded-full">
                   <motion.div
-                    className="absolute left-1/2 -translate-x-1/2 w-0.5 h-8 bg-white/35 rounded-full"
+                    className="absolute left-1/2 -translate-x-1/2 w-0.5 h-8 bg-gray-300 shadow shadow-white/50 rounded-full"
                     animate={{ y: [0, 144, 0] }}
-                    transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
+                    transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
                   />
                 </div>
               </div>
@@ -245,7 +245,7 @@ export default function App() {
                 </div>
                 <div className="w-0.5 h-24 bg-gradient-to-r from-white/0 via-white/35 to-white/0 rounded-full">
                   <motion.div
-                    className="absolute left-1/2 -translate-x-1/2 w-0.5 h-8 bg-white/35 rounded-full"
+                    className="absolute left-1/2 -translate-x-1/2 w-0.5 h-8 bg-gray-300 shadow shadow-white/50  rounded-full"
                     animate={{ y: [0, 144, 0] }}
                     transition={{ duration: 9, repeat: Infinity, ease: "easeInOut" }}
                   />
@@ -260,9 +260,9 @@ export default function App() {
                 </div>
                 <div className="w-0.5 h-40 bg-gradient-to-r from-white/0 via-white/35 to-white/0 rounded-full">
                   <motion.div
-                    className="absolute left-1/2 -translate-x-1/2 w-0.5 h-8 bg-white/35 rounded-full"
+                    className="absolute left-1/2 -translate-x-1/2 w-0.5 h-8 bg-gray-300 shadow shadow-white/50 rounded-full"
                     animate={{ y: [0, 144, 0] }}
-                    transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
+                    transition={{ duration: 9, repeat: Infinity, ease: "easeInOut" }}
                   />
                 </div>
               </div>
@@ -270,16 +270,16 @@ export default function App() {
             <motion.div
               className="w-96 h-96 bg-cover bg-center rounded-lg shadow-2xl z-20"
               style={{ backgroundImage: `url(${unnamedImage})` }}
-              animate={{ y: [4, -2, 3, 1, 0, 5], rotate: [-2, 2, -3, 0, 2, -2] }}
-              transition={{ duration: 15, repeat: Infinity }}
+              animate={{ y: [9, -8, 9, -7, 10, -9], rotate: [-2, 2, -3, 0, 2, -2] }}
+              transition={{ duration: 12, repeat: Infinity }}
             />
             <div className="flex justify-center gap-10 mt-8 text-white">
               <div className="flex flex-col items-center absolute top-70 left-5">
                 <div className="w-0.5 h-32 bg-gradient-to-r from-white/0 via-white/35 to-white/0">
                   <motion.div
-                    className="absolute left-1/2 -translate-x-1/2 w-0.5 h-8 bg-white/35 rounded-full"
+                    className="absolute left-1/2 -translate-x-1/2 w-0.5 h-8 bg-gray-300 shadow shadow-white/50  rounded-full"
                     animate={{ y: [0, 100, 0] }}
-                    transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
+                    transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
                   />
                 </div>
                 <div className="flex gap-2 items-center">
@@ -292,7 +292,7 @@ export default function App() {
               <div className="flex flex-col items-center absolute top-60 left-38 z-0">
                 <div className="w-0.5 h-32 bg-gradient-to-r from-white/0 via-white/35 to-white/0">
                   <motion.div
-                    className="absolute left-1/2 -translate-x-1/2 w-0.5 h-8 bg-white/35 rounded-full"
+                    className="absolute left-1/2 -translate-x-1/2 w-0.5 h-8 bg-gray-300 shadow shadow-white/50 rounded-full"
                     animate={{ y: [0, 100, 0] }}
                     transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
                   />
@@ -307,7 +307,7 @@ export default function App() {
               <div className="flex flex-col items-center absolute top-70 left-68">
                 <div className="w-0.5 h-28 bg-gradient-to-r from-white/0 via-white/35 to-white/0">
                   <motion.div
-                    className="absolute left-1/2 -translate-x-1/2 w-0.5 h-8 bg-white/45 rounded-full"
+                    className="absolute left-1/2 -translate-x-1/2 w-0.5 h-8 bg-gray-300 shadow shadow-white/50 rounded-full"
                     animate={{ y: [0, 80, 0] }}
                     transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
                   />
