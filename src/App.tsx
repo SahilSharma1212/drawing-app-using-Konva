@@ -8,6 +8,7 @@ import { useState, useRef } from "react";
 import { Stage, Layer, Line, Rect, Arrow } from "react-konva";
 import { Circle as KonvaCircle } from "react-konva";
 import Konva from "konva";
+
 export default function App() {
   const [isDrawing, setIsDrawing] = useState(false);
   const [selectedTool, setSelectedTool] = useState("brush");
@@ -21,10 +22,14 @@ export default function App() {
   const isDrawingRef = useRef(false);
   const stageRef = useRef<Konva.Stage>(null);
 
-  const handleMouseDown = (e: Konva.KonvaEventObject<MouseEvent>) => {
-    isDrawingRef.current = true;
+  const getPointerPosition = (e: Konva.KonvaEventObject<MouseEvent> | Konva.KonvaEventObject<TouchEvent>) => {
     const stage = e.target.getStage();
-    const point = stage?.getPointerPosition();
+    return stage?.getPointerPosition();
+  };
+
+  const handleStart = (e: Konva.KonvaEventObject<MouseEvent> | Konva.KonvaEventObject<TouchEvent>) => {
+    isDrawingRef.current = true;
+    const point = getPointerPosition(e);
     if (!point) return;
 
     if (selectedTool === 'brush') {
@@ -55,10 +60,9 @@ export default function App() {
     }
   };
 
-  const handleMouseMove = (e: Konva.KonvaEventObject<MouseEvent>) => {
+  const handleMove = (e: Konva.KonvaEventObject<MouseEvent> | Konva.KonvaEventObject<TouchEvent>) => {
     if (!isDrawingRef.current) return;
-    const stage = e.target.getStage();
-    const point = stage?.getPointerPosition();
+    const point = getPointerPosition(e);
     if (!point) return;
 
     if (selectedTool === 'brush') {
@@ -103,7 +107,7 @@ export default function App() {
     }
   };
 
-  const handleMouseUp = () => {
+  const handleEnd = () => {
     isDrawingRef.current = false;
   };
 
@@ -195,13 +199,13 @@ export default function App() {
           <div className="max-md:hidden text-xl font-semibold">Drawing App</div>
         </div>
         <div className="flex px-2 py-1 bg-gradient-to-b from-gray-400/30 via-gray-500/30 to-blue-300/10 rounded-xl items-center border border-gray-500/50 shadow-2xl shadow-gray-500/10 max-md:scale-80 max-sm:scale-75">
-          <a className="text-white gap-3 hover:bg-gray-300/10 p-3 px-8 rounded-lg transition duration-300 cursor-pointer h-full flex items-center justify-center" href="https://mail.google.com/mail/?view=cm&to=sahilbhaisharma1212@gmail.com" target="_blank">
+          <a className="text-white gap-3 hover:bg-gray-300/10 p-3 px-8 rounded-lg transition duration-300 cursor-pointer h-full flex items-center justify-center z-30" href="https://mail.google.com/mail/?view=cm&to=sahilbhaisharma1212@gmail.com" target="_blank">
             <IoMdMail className="text-2xl" /> Email
           </a>
-          <a className="text-white gap-3 hover:bg-gray-300/10 p-3 px-8 rounded-lg transition duration-300 cursor-pointer h-full flex items-center justify-center" href="https://github.com/sahilSharma1212" target="_blank">
-            <FaGithub className="text-2xl" /> Github
+          <a className="text-white gap-3 hover:bg-gray-300/10 p-3 px-8 rounded-lg transition duration-300 cursor-pointer h-full flex items-center justify-center z-30" href="https://github.com/sahilSharma1212" target="_blank">
+            <FaGithub className="text-2xl z-30" /> Github
           </a>
-          <a className="text-white gap-3 hover:bg-gray-300/10 p-3 px-8 rounded-lg transition duration-300 cursor-pointer flex justify-center items-center" href="https://www.linkedin.com/in/sahil-sharma-822a752a9/" target="_blank">
+          <a className="text-white gap-3 hover:bg-gray-300/10 p-3 px-8 rounded-lg transition duration-300 cursor-pointer flex justify-center items-center z-30" href="https://www.linkedin.com/in/sahil-sharma-822a752a9/" target="_blank">
             <FaLinkedinIn className="text-2xl" /> LinkedIn
           </a>
         </div>
@@ -214,7 +218,6 @@ export default function App() {
 
       {/* hero section */}
       <div className="flex flex-col items-center w-screen pt-16 z-10">
-
         <div className="main-hero-composition flex justify-center items-center gap-56 flex-wrap max-md:gap-32 max-xl:gap-40">
           <div className="flex flex-col relative max-sm:scale-90">
             <div className="flex flex-row justify-between absolute top-0">
@@ -286,7 +289,6 @@ export default function App() {
                   <p className="text-sm">Free Draw</p>
                 </div>
               </div>
-
               <div className="flex flex-col items-center absolute top-60 left-38 z-0">
                 <div className="w-0.5 h-32 bg-gradient-to-r from-white/0 via-white/35 to-white/0">
                   <motion.div
@@ -302,7 +304,6 @@ export default function App() {
                   <p className="text-sm">Save</p>
                 </div>
               </div>
-
               <div className="flex flex-col items-center absolute top-70 left-68">
                 <div className="w-0.5 h-28 bg-gradient-to-r from-white/0 via-white/35 to-white/0">
                   <motion.div
@@ -425,9 +426,12 @@ export default function App() {
             <Stage
               width={window.innerWidth}
               height={700}
-              onMouseDown={handleMouseDown}
-              onMousemove={handleMouseMove}
-              onMouseup={handleMouseUp}
+              onMouseDown={handleStart}
+              onMouseMove={handleMove}
+              onMouseUp={handleEnd}
+              onTouchStart={handleStart}
+              onTouchMove={handleMove}
+              onTouchEnd={handleEnd}
               className="border border-white/50 rounded-3xl"
               ref={stageRef}
             >
@@ -490,8 +494,6 @@ export default function App() {
             </Stage>
           </div>
         </div>
-
-
       </div>
       <footer className="w-full bg-[#06070e] py-6 mt-10 z-10">
         <div className="max-w-7xl mx-auto px-4 flex flex-col items-center gap-4">
@@ -522,7 +524,7 @@ export default function App() {
             Drawing App - Built with React, Konva, and Tailwind CSS
           </p>
           <p className="text-white/60 text-sm">
-            &copy; {new Date().getFullYear()} Sahil Sharma. All rights reserved.
+            © {new Date().getFullYear()} Sahil Sharma. All rights reserved.
           </p>
         </div>
       </footer>
